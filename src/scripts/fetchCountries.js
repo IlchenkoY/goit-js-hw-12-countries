@@ -3,4 +3,17 @@ export default function fetchCountries(country) {
         .then(response => {
             return response.json();
         });
-};
+    //     .then(response => {
+    //         if (response.ok) {
+    //             return response.json();
+    //         }
+    //         if (response.status === 404) {
+    //             error({
+    //         text: "Please enter valid query!"
+    //              });
+    //         }
+        
+    // });
+    
+}
+
