@@ -11,7 +11,7 @@ const debounce = require('lodash.debounce');
 const cardContainerEl = document.getElementById('country-card');
 const inputEl = document.getElementById('input');
 
-inputEl.addEventListener('input', debounce(searchHandler,1000));
+inputEl.addEventListener('input', debounce(searchHandler,500));
 
 function searchHandler(e) {
     e.preventDefault();
@@ -19,7 +19,6 @@ function searchHandler(e) {
     
     if (!countryName) {
         const cardElements = cardContainerEl.children;
-        console.log(cardElements);
         const arr = [...cardElements];
         arr.forEach(el => el.remove());
     }
@@ -33,9 +32,7 @@ function searchHandler(e) {
             }
             renderCountryCard(response);
     })
-        // .then(renderCountryCard)
         .catch(fetchErrorHandler)
-        // .finally(() => (e.target.value = ''))
     }
 }
 
@@ -43,11 +40,9 @@ function renderCountryCard(country) {
 
     if (country.length > 1 && country.length <= 10) {
         const markup = countriesListTpl(country);
-        console.log(markup);
         cardContainerEl.innerHTML = markup; 
     } else if (country.length === 1) {
         const markup = countryCardTpl(country[0]);
-        console.log(markup);
         cardContainerEl.innerHTML = markup; 
     } else if (country.length > 10) {
         alert({
